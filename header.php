@@ -1,6 +1,8 @@
 <?php
-// ini_set('display_errors', 0);
-// error_reporting(0);
+ini_set('display_errors', 1);
+error_reporting(1);
+ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/session'));
+
 session_start();
 require './system/initialize.php';
 ?>
@@ -26,7 +28,7 @@ require './system/initialize.php';
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <!-- <li class="active"><a href="#">Records</a></li> -->
+        <li class="active"><a href="#">Records</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/qsams/logout.php"><span class="fa fa-sign-out"></span> Logout</a></li>

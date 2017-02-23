@@ -58,17 +58,19 @@ if (isset($_SESSION['email']))
                 }
                 else
                 {
-                //  try{
+                 try{
                   $users = Users::all(array('conditions' => array('email = ? AND password = ?', $_REQUEST['email'], $_REQUEST['password']),'limit' => 1));
-                // }catch(Exception $ed){
-                //   echo $ed;
-                // }
+                 }catch(Exception $ed){
+                   echo $ed;
+                 }
                   if(sizeof($users) > 0)
                   {
+                    
                      $_SESSION['email'] = $users[0]->email;
                      $_SESSION['name'] = $users[0]->name;
                      $_SESSION['role'] = $users[0]->role;
-                     header("Location: records.php");
+                  
+                    header("Location: records.php");
                   }
                   else
                   {

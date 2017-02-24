@@ -79,7 +79,7 @@ $total_pages = ceil($total_records / $limit_filter);
   <select class="form-control" name="block_number">
     <option value="0">Select Block</option>
     <?php
-     for( $i = 1 ; $i <= 94 ; $i++){
+     for( $i = 1 ; $i <= 100 ; $i++){
         echo "<option value='".$i."' ";
         if($block_filter == $i )
           echo " selected='selected' ";

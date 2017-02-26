@@ -1,50 +1,3 @@
-<?php include 'header.php';?>
-
-<section id="refrences">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2>Components</h2>
-                <hr class="star-primary">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4 portfolio-item" style="height: 300px;">
-                <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-                    <img src="img/main-layout.jpg" style="height:100%;width:100%" class="img-thumbnail" alt="">
-                </a>
-            </div>
-            <div class="col-sm-4 portfolio-item" style="height: 300px;">
-                <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
-                    <img src="img/satallite.jpg" style="height:100%;width:100%" class="img-thumbnail" alt="">
-                </a>
-            </div>
-            <div class="col-sm-4 portfolio-item" style="height: 300px;">
-                <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
-                    <img src="img/block.jpg" style="height:100%;width:100%" class="img-thumbnail" alt="">
-                </a>
-            </div>
-        </div>
-        <hr/>
-        <div class="row">
-            <div class="col-sm-4 portfolio-item" style="height: 200px;">
-                <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
-                    <img src="img/table.jpg" style="height:100%;width:100%" class="img-thumbnail" alt="">
-                </a>
-            </div>
-            <div class="col-sm-4 portfolio-item" style="height: 200px;">
-                <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
-                    <img src="img/row.jpg" style="height:100%;width:100%" class="img-thumbnail" alt="">
-                </a>
-            </div>
-            <div class="col-sm-4 portfolio-item" style="height: 200px;">
-                <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
-                    <img src="img/table-layout.jpg"  style="height:100%;width:100%" class="img-thumbnail" alt="">
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
 <!-- Portfolio Modals -->
 <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content">
@@ -197,8 +150,3 @@
         </div>
     </div>
 </div>
-
-<?php include 'footer.php'; ?>
-<script>
-  $('.zoom').zoom();
-</script>

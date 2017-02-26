@@ -1,5 +1,5 @@
 body {
-  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'websafe', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   overflow-x: hidden;
 }
 p {
@@ -102,7 +102,7 @@ header .intro-text .skills {
   background: #2C3E50;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: normal;
   border: none;
 }
 .navbar-custom a:focus {

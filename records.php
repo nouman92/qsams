@@ -83,6 +83,40 @@ $total_pages = ceil($total_records / $limit_filter);
 <section class="" id="">
     <div class="container">
         <div class="row">
+          <div class="container text-center" style="">
+              <div class="col-sm-2 portfolio-item" style="height: 90px;">
+                  <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                      <img src="img/main-layout.jpg" style="height:100%;width:100%" class="img-thumbnail" alt="">
+                  </a>
+              </div>
+              <div class="col-sm-2 portfolio-item" style="height: 90px;">
+                  <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
+                      <img src="img/satallite.jpg" style="height:100%;width:100%" class="img-thumbnail" alt="">
+                  </a>
+              </div>
+              <div class="col-sm-2 portfolio-item" style="height: 90px;">
+                  <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
+                      <img src="img/block.jpg" style="height:100%;width:100%" class="img-thumbnail" alt="">
+                  </a>
+              </div>
+              <div class="col-sm-2 portfolio-item" style="height: 90px;">
+                  <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
+                      <img src="img/table.jpg" style="height:100%;width:100%" class="img-thumbnail" alt="">
+                  </a>
+              </div>
+              <div class="col-sm-2 portfolio-item" style="height: 90px;">
+                  <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
+                      <img src="img/row.jpg" style="height:100%;width:100%" class="img-thumbnail" alt="">
+                  </a>
+              </div>
+              <div class="col-sm-2 portfolio-item" style="height: 90px;">
+                  <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
+                      <img src="img/table-layout.jpg"  style="height:100%;width:100%" class="img-thumbnail" alt="">
+                  </a>
+              </div>
+              <?php include 'refrences.php';?>
+          </div>
+          <hr/>
           <div class="jumbotron text-center ">
             <form class="form-inline" action="/qsams/records.php" method="post">
             <select class="form-control" name="block_number">

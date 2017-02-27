@@ -1,5 +1,5 @@
 body {
-  font-family: 'websafe', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: TimesNewRoman,"Times New Roman",Times,Baskerville,Georgia,serif,"websafe";
   overflow-x: hidden;
 }
 p {
@@ -13,7 +13,7 @@ a:hover,
 a:focus,
 a:active,
 a.active {
-  color: #18BC9C;
+  color: #17a3eb;
   outline: none;
 }
 h1,
@@ -22,42 +22,10 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: TimesNewRoman,"Times New Roman",Times,Baskerville,Georgia,serif,"websafe";
   text-transform: uppercase;
   font-weight: 700;
-}
-hr.star-light,
-hr.star-primary {
-  padding: 0;
-  border: none;
-  border-top: solid 5px;
-  text-align: center;
-  max-width: 250px;
-  margin: 25px auto 30px;
-}
-hr.star-light:after,
-hr.star-primary:after {
-  content: "\f005";
-  font-family: FontAwesome;
-  display: inline-block;
-  position: relative;
-  top: -0.8em;
-  font-size: 2em;
-  padding: 0 0.25em;
-}
-hr.star-light {
-  border-color: white;
-}
-hr.star-light:after {
-  background-color: #18BC9C;
-  color: white;
-}
-hr.star-primary {
-  border-color: #2C3E50;
-}
-hr.star-primary:after {
-  background-color: white;
-  color: #2C3E50;
+  color: #194a5e;
 }
 .img-centered {
   margin: 0 auto;
@@ -77,7 +45,7 @@ header img {
 }
 header .intro-text .name {
   display: block;
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: TimesNewRoman,"Times New Roman",Times,Baskerville,Georgia,serif,"websafe";
   text-transform: uppercase;
   font-weight: 700;
   font-size: 2em;
@@ -99,10 +67,11 @@ header .intro-text .skills {
   }
 }
 .navbar-custom {
-  background: #2C3E50;
-  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #fff;
+  font-family: TimesNewRoman,"Times New Roman",Times,Baskerville,Georgia,serif,"websafe";
   text-transform: uppercase;
   font-weight: normal;
+  min-height: 100px;
   border: none;
 }
 .navbar-custom a:focus {
@@ -121,41 +90,43 @@ header .intro-text .skills {
   letter-spacing: 1px;
 }
 .navbar-custom .navbar-nav li a {
-  color: white;
+  color: #194a5e;
+  font-size: 16px;
+  font-family: "Julius Sans One",Helvetica,Arial,sans-serif;
 }
 .navbar-custom .navbar-nav li a:hover {
-  color: #18BC9C;
+  color: #17a3eb;
   outline: none;
+  border-bottom: 3px solid
 }
 .navbar-custom .navbar-nav li a:focus,
 .navbar-custom .navbar-nav li a:active {
-  color: white;
+  color: #17a3eb;
 }
 .navbar-custom .navbar-nav li.active a {
-  color: white;
-  background: #18BC9C;
+  color: #17a3eb;
 }
 .navbar-custom .navbar-nav li.active a:hover,
 .navbar-custom .navbar-nav li.active a:focus,
 .navbar-custom .navbar-nav li.active a:active {
-  color: white;
-  background: #18BC9C;
+  color: #17a3eb;
+  background: #17a3eb;
 }
 .navbar-custom .navbar-toggle {
-  color: white;
+  color: #17a3eb;
   text-transform: uppercase;
   font-size: 10px;
-  border-color: white;
+  border-color: #17a3eb;
 }
 .navbar-custom .navbar-toggle:hover,
 .navbar-custom .navbar-toggle:focus {
-  background-color: #18BC9C;
+  background-color: #17a3eb;
   color: white;
-  border-color: #18BC9C;
+  border-color: #17a3eb;
 }
 @media (min-width: 768px) {
   .navbar-custom {
-    padding: 10px 0;
+    padding: 20px 0;
     -webkit-transition: padding 0.3s;
     -moz-transition: padding 0.3s;
     transition: padding 0.3s;
@@ -165,12 +136,6 @@ header .intro-text .skills {
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     transition: all 0.3s;
-  }
-  .navbar-custom.affix {
-    padding: 10px 0;
-  }
-  .navbar-custom.affix .navbar-brand {
-    font-size: 1.5em;
   }
 }
 section {
@@ -291,21 +256,9 @@ form .row:first-child .floating-label-form-group {
   border-top: 1px solid #eeeeee;
 }
 footer {
-  color: white;
-}
-footer h3 {
-  margin-bottom: 30px;
-}
-footer .footer-above {
-  padding-top: 50px;
-  background-color: #2C3E50;
-}
-footer .footer-col {
-  margin-bottom: 50px;
-}
-footer .footer-below {
-  padding: 25px 0;
-  background-color: #233140;
+  color: #194a5e;
+  font-family: "Noto Sans",Arial,sans-serif;
+  height: 50px;
 }
 .btn-outline {
   color: white;
@@ -319,7 +272,7 @@ footer .footer-below {
 .btn-outline:focus,
 .btn-outline:active,
 .btn-outline.active {
-  color: #18BC9C;
+  color: #17a3eb;
   background: white;
   border: solid 2px white;
 }
@@ -367,23 +320,24 @@ fieldset[disabled] .btn-primary.active {
 }
 .btn-success {
   color: white;
-  background-color: #18BC9C;
-  border-color: #18BC9C;
+  background-color: #17a3eb;
+  border-color: #17a3eb;
   font-weight: 700;
 }
 .btn-success:hover,
 .btn-success:focus,
 .btn-success:active,
-.btn-success.active,
 .open .dropdown-toggle.btn-success {
   color: white;
-  background-color: #128f76;
-  border-color: #11866f;
+  background-color: #194a5e;
+  border-color: #194a5e;
 }
 .btn-success:active,
 .btn-success.active,
 .open .dropdown-toggle.btn-success {
   background-image: none;
+  background-color: #194a5e;
+  border-color: #194a5e;
 }
 .btn-success.disabled,
 .btn-success[disabled],
@@ -400,13 +354,10 @@ fieldset[disabled] .btn-success:active,
 .btn-success.disabled.active,
 .btn-success[disabled].active,
 fieldset[disabled] .btn-success.active {
-  background-color: #18BC9C;
-  border-color: #18BC9C;
+  background-color: #194a5e;
+  border-color: #194a5e;
 }
-.btn-success .badge {
-  color: #18BC9C;
-  background-color: white;
-}
+
 .btn-social {
   display: inline-block;
   height: 50px;

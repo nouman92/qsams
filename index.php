@@ -63,10 +63,10 @@ if (isset($_SESSION['email']))
                       else
                       {
                         try{
-                        $users = Users::all(array('conditions' => array('email = ? AND password = ?', $_REQUEST['email'], $_REQUEST['password']),'limit' => 1));
-                       }catch(Exception $ed){
-                         echo $ed;
-                       }
+                            $users = Users::all(array('conditions' => array('email = ? AND password = ?', $_REQUEST['email'], $_REQUEST['password']),'limit' => 1));
+                        }catch(Exception $ed){
+                            echo $ed;
+                        }
                         if(sizeof($users) > 0)
                         {
                            $_SESSION['email'] = $users[0]->email;

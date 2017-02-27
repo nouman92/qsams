@@ -7,9 +7,9 @@ if (!isset($_SESSION['email']))
 }
 $user = Users::find(array('conditions' => array('email = ?', $_SESSION['email']),'limit' => 1));
 ?>
-
 <!-- Contact Section -->
-<section id="">
+<section id="" style="height:100vh">
+    <hr/>
     <div class="container">
         <div class="row">
             <div class="col-lg-4">

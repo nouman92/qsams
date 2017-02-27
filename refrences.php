@@ -12,9 +12,9 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="modal-body">
                         <h2>Project Layout</h2>
-                        <hr class="star-primary">
+                        <hr />
                         <div class="zoom">
-                          <img src="img/main-layout.jpg" class="img-responsive img-centered" alt="">
+                          <img src="vendor/img/main-layout.jpg" class="img-responsive img-centered" alt="">
                         </div>
                         <p>This is the layout of complete project</p>
                         <ul class="list-inline item-details">
@@ -50,9 +50,9 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="modal-body">
                         <h2>Block Layout</h2>
-                        <hr class="star-primary">
+                        <hr />
                         <div class="">
-                          <img src="img/block.jpg" class="img-responsive img-centered" alt="">
+                          <img src="vendor/img/block.jpg" class="img-responsive img-centered" alt="">
                         </div>
                         <p>Project is divided into block, each with specific number</p>
                     </div>
@@ -74,9 +74,9 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="modal-body">
                         <h2>Sattelite View</h2>
-                        <hr class="star-primary">
+                        <hr />
                         <div class="zoom">
-                          <img src="img/satallite.jpg" class="img-responsive img-centered" alt="">
+                          <img src="vendor/img/satallite.jpg" class="img-responsive img-centered" alt="">
                         </div>
                     </div>
                 </div>
@@ -97,8 +97,8 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="modal-body">
                         <h2>Table View</h2>
-                        <hr class="star-primary">
-                        <img src="img/table.jpg" class="img-responsive img-centered" alt="">
+                        <hr />
+                        <img src="vendor/img/table.jpg" class="img-responsive img-centered" alt="">
                         <p>8 Table per row and are counted from right to left</p>
                     </div>
                 </div>
@@ -119,8 +119,8 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="modal-body">
                         <h2>Rows view</h2>
-                        <hr class="star-primary">
-                        <img src="img/row.jpg" class="img-responsive img-centered" alt="">
+                        <hr />
+                        <img src="vendor/img/row.jpg" class="img-responsive img-centered" alt="">
                         <p>Each block have 13 rows and are counted from top to bottom</p>
                     </div>
                 </div>
@@ -141,8 +141,8 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="modal-body">
                         <h2>Table view</h2>
-                        <hr class="star-primary">
-                        <img src="img/table-layout.jpg" class="img-responsive img-centered" alt="">
+                        <hr />
+                        <img src="vendor/img/table-layout.jpg" class="img-responsive img-centered" alt="">
                         <p>Each table have 40 panels with top/bottom positions and a number</p>
                     </div>
                 </div>

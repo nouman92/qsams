@@ -4,7 +4,7 @@ if (!isset($_SESSION['email']))
  header("Location: index.php");
  die();
 }
-if(!isset($_REQUEST['record_id']))
+if(!isset($_REQUEST['record_id']) || $_SESSION['role'] == "Standard")
 {
   header("Location: records.php");
   die();
@@ -139,10 +139,10 @@ if(sizeof($assetsGrid->asset) > 0 && !isset($_REQUEST['new_record'])){
                 </div>
                 <br/>
                 <?php if($is_new)  { ?>
-                  <input class="btn btn-primary" name="add_record" type="submit" value="Add New"/>
+                  <input class="btn btn-success" name="add_record" type="submit" value="Add New"/>
                 <?php }else{ ?>
-                  <input class="btn btn-primary" name="update_record" type="submit" value="Update"/>
-                  <input class="btn btn-primary" name="new_record" type="submit" value="Add New"/>
+                  <input class="btn btn-success" name="update_record" type="submit" value="Update"/>
+                  <input class="btn btn-success" name="new_record" type="submit" value="Add New"/>
                 <?php }?>
 
               </div>

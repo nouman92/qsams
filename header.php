@@ -14,27 +14,25 @@ require './system/initialize.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="img/favicon.png">
+    <meta name="author" content="Nouman Anjum">
+    <link rel="shortcut icon" href="vendor/img/favicon.png">
     <title>QASP-Assets Management</title>
-    <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Theme CSS -->
-    <link href="css/freelancer.css" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/css/styles.css" rel="stylesheet">
+    <link href="vendor/fonts/JuliusSansOne-Regular.ttf" rel="preconnect">
+
 
 </head>
 <body id="page-top" class="cc-content-parent">
     <!-- Navigation -->
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom affix">
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
         <div class="container topbar navigation-colors">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll ">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#toggle_menue">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="/qsams/" ><img width="200px"src="./img/logo2.jpg" alt="Assets Management" /></a>
+                <a class="navbar-brand" href="/qsams/" ><img width="200px"src="./vendor/img/logo2.jpg" alt="Assets Management" /></a>
                 <!-- <a class="navbar-brand" href="/bootstrap">Assets Management</a> -->
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->

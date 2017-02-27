@@ -15,7 +15,7 @@ $assetsGrid = Assetsgrid::find($record_id);
 <section class="" id="">
     <div class="container">
       <div class="row">
-          <h2>Record Details - <a class="btn" href="<?php echo "/qsams/edit.php?record_id=".$assetsGrid->id; ?>" > <h5>Edit Active</h5></a></h2>
+          <h2>Record Details <?php if($_SESSION['role'] == "Admin"){ ?> - <a class="btn" href="<?php echo "/qsams/edit.php?record_id=".$assetsGrid->id; ?>" > <h5>Edit Active</h5></a> <?php } ?></h2>
           <hr/>
           <div class="row">
             <div class="">

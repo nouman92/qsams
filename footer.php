@@ -1,4 +1,4 @@
-<footer class="footer-options">
+<footer class="footer-options text-center">
     <div class="footer">
         <div class="container">
             <div class="row">
@@ -11,9 +11,11 @@
 </footer>
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="vendor/js/jquery.imagezoom.js"></script>
+<script src="vendor/js/easyzoom.js"></script>
+<script src="vendor/js/custom.js"></script>
 <script>
-  $('.zoom').zoom();
+var $easyzoom = $('.easyzoom').easyZoom();
+
 </script>
 </body>
 </html>

@@ -8,8 +8,7 @@ if (!isset($_SESSION['email']))
 $user = Users::find(array('conditions' => array('email = ?', $_SESSION['email']),'limit' => 1));
 ?>
 <!-- Contact Section -->
-<section id="" style="height:100vh">
-    <hr/>
+<section id="" style="height:90vh">
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
@@ -70,7 +69,7 @@ $user = Users::find(array('conditions' => array('email = ?', $_SESSION['email'])
                     </div>
                     <div class="row">
                         <div class="form-group col-xs-12">
-                            <button type="submit" name="save_data" class="btn btn-success btn-lg">Update Data</button>
+                            <button type="submit" name="save_data" class="btn btn-success btn-lg button">Update Data</button>
                         </div>
                     </div>
                 </form>
@@ -141,7 +140,7 @@ $user = Users::find(array('conditions' => array('email = ?', $_SESSION['email'])
                 </div>
                 <div class="row">
                     <div class="form-group col-xs-12">
-                        <button type="submit" name="update_password" class="btn btn-success btn-lg">Update Password</button>
+                        <button type="submit" name="update_password" class="btn btn-success btn-lg button">Update Password</button>
                     </div>
                 </div>
             </form>

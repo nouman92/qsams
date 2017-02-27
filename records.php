@@ -28,7 +28,6 @@ if (isset($_POST['apply_filter']))
   $seriel_filter = $_POST['seriel_no'];
   $limit_filter = $_POST['limit'];
   $current_page = $_POST['current_page'];
-  $_POST = array();
 }
 
 
@@ -56,49 +55,38 @@ if( $panel_filter != 0){
   $glue = ' AND';
 }
 
-if( $seriel_filter != ""){
-  try{
-  $assetsGrid = Assetsgrid::All(array(
-    'conditions' => array("seriel_no like ? " , '%'.$seriel_filter.'%'),
-    "joins"=>array('asset'),
-    'limit' => $limit_filter,
-    'offset' => (($current_page-1) * $limit_filter)
-  ));
-  $total_records = Assetsgrid::count(array(
-    'conditions' => array("seriel_no like ? " , '%'.$seriel_filter.'%'),
-    "joins"=>array('asset'),
-    'limit' => $limit_filter,
-    'offset' => (($current_page-1) * $limit_filter)
-  ));
-   }catch(Exception $ex){
-    echo $ex;
+if (isset($_POST['apply_filter'])){
+  if( $seriel_filter != ""){
+    try{
+      $assetsGrid = Assetsgrid::All(array(
+        'conditions' => array("seriel_no like ? " , '%'.$seriel_filter.'%'),
+        "joins"=>array('asset'),
+        'limit' => $limit_filter,
+        'offset' => (($current_page-1) * $limit_filter)
+      ));
+      $total_records = Assetsgrid::count(array(
+        'conditions' => array("seriel_no like ? " , '%'.$seriel_filter.'%'),
+        "joins"=>array('asset'),
+        'limit' => $limit_filter,
+        'offset' => (($current_page-1) * $limit_filter)
+      ));
+     }catch(Exception $ex){
+      echo $ex;
+    }
+  }else{
+    $assetsGrid = Assetsgrid::find('all',array('conditions'=> array_merge(array(1 => $clause), $cond_values) ,"limit"=>$limit_filter,'offset' => (($current_page-1) * $limit_filter)));
+    $total_records = Assetsgrid::count(array('conditions'=> array_merge(array(1 => $clause), $cond_values)));
   }
-}else{
-  $assetsGrid = Assetsgrid::find('all',array('conditions'=> array_merge(array(1 => $clause), $cond_values) ,"limit"=>$limit_filter,'offset' => (($current_page-1) * $limit_filter)));
-  $total_records = Assetsgrid::count(array('conditions'=> array_merge(array(1 => $clause), $cond_values)));
+  $total_pages = ceil($total_records / $limit_filter);
 }
-
-$total_pages = ceil($total_records / $limit_filter);
-// if (isset($_POST['get_csv'])){
-//   $index = 0;
-//   $file = fopen('output.csv', 'w');
-//   fputcsv($file, array('Block', 'Row', 'Table', 'Panel', 'Seriel'));
-//   foreach ($assetsGrid as $grid){
-//     $index++;
-//     fputcsv($file,[$grid->block_number,$grid->row_number,$grid->table_number,$grid->panel_number,get_active_seriel_number($grid->asset)]);
-//     if($index == 200)
-//       break;
-//   }
-//   fclose($file);
-//   header('Content-Type: text/csv; charset=utf-8');
-//   header('Content-Disposition: attachment; filename=data.csv');
-// }
 ?>
 <section class="" id="">
-    <hr/>
+  <br/>
     <div class="container">
         <div class="row">
           <div class="container text-center" style="">
+            <div class="col-sm-1" style="height: 90px;">
+            </div>
               <div class="col-sm-2 portfolio-item" style="height: 90px;">
                   <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
                       <img src="vendor/img/main-layout.jpg" style="height:100%;width:100%" class="img-thumbnail" alt="">
@@ -107,11 +95,6 @@ $total_pages = ceil($total_records / $limit_filter);
               <div class="col-sm-2 portfolio-item" style="height: 90px;">
                   <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
                       <img src="vendor/img/satallite.jpg" style="height:100%;width:100%" class="img-thumbnail" alt="">
-                  </a>
-              </div>
-              <div class="col-sm-2 portfolio-item" style="height: 90px;">
-                  <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
-                      <img src="vendor/img/block.jpg" style="height:100%;width:100%" class="img-thumbnail" alt="">
                   </a>
               </div>
               <div class="col-sm-2 portfolio-item" style="height: 90px;">
@@ -132,7 +115,7 @@ $total_pages = ceil($total_records / $limit_filter);
               <?php include 'refrences.php';?>
           </div>
           <hr/>
-          <div class="jumbotron">
+          <div class="records-filter">
             <form class="form-inline" action="/qsams/records.php" method="post">
               <div class="text-center">
                 <select class="form-control" name="block_number">
@@ -202,14 +185,32 @@ $total_pages = ceil($total_records / $limit_filter);
                    ?>
                 </select>
                 <input class="form-control"  name="seriel_no" placeholder="Seriel no" type="text"/>
+                <button class="btn btn-success" type="submit" name="apply_filter" >Show Results</button>
+                <button class="btn btn-success" type="submit" name="get_csv" >Write CSV</button>
+
               </div>
               <br/>
               <div class="text-center">
-                <input class="btn btn-success" type="submit" name="apply_filter" value="Show Results"/>
-                <!-- <input class="btn btn-success" type="submit" name="get_csv" value="Write CSV"/> -->
+                <?php
+                if (isset($_POST['get_csv'])){
+                  $data_to_write = Assetsgrid::find('all',array('conditions'=> array_merge(array(1 => $clause), $cond_values) ,"limit"=>500));
+                  $index = 0;
+                  $fp = fopen('output.csv', 'w');
+                  fputcsv($fp, array('Block', 'Row', 'Table', 'Panel', 'Seriel'));
+                  foreach ($data_to_write as $grid){
+                    $index++;
+                    fputcsv($fp,[$grid->block_number,$grid->row_number,$grid->table_number,$grid->panel_number,get_active_seriel_number($grid->asset)]);
+                    if($index == 500)
+                      break;
+                  }
+                  echo "<a href='./output.csv' target='_blank'>Download Here</a>";
+                  header("Refresh: 10;url=records.php");
+                }
+                ?>
               </div>
             </form>
           </div>
+          <hr/>
           <div class="container" style="">
             <table id="assetsGrid" class="table table-striped table-bordered table-hover  text-center">
             <thead>

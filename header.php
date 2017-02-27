@@ -32,7 +32,7 @@ require './system/initialize.php';
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#toggle_menue">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="/qsams/" ><img width="200px"src="./vendor/img/logo2.jpg" alt="Assets Management" /></a>
+                <a class="navbar-brand" href="/qsams/" ><img width="200px" height="" src="./vendor/img/qs-solar-logo.jpg" alt="Assets Management" /></a>
                 <!-- <a class="navbar-brand" href="/bootstrap">Assets Management</a> -->
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->

@@ -9,14 +9,16 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
+                <div class="col-lg-6 col-lg-offset-1">
                     <div class="modal-body">
-                        <h2>Project Layout</h2>
+                        <h2>Plant Layout</h2>
                         <hr />
-                        <div class="zoom">
-                          <img src="vendor/img/main-layout.jpg" class="img-responsive img-centered" alt="">
+                        <div class="easyzoom easyzoom--adjacent">
+                          <a href="vendor/img/main-layout.jpg">
+                            <img src="vendor/img/main-layout.jpg" class="img-responsive img-centered" alt="">
+                          </a>
                         </div>
-                        <p>This is the layout of complete project</p>
+                        <p>This is the layout of complete plant</p>
                         <ul class="list-inline item-details">
                             <li>Blocks:
                                 <strong>100</strong>
@@ -45,20 +47,6 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <div class="modal-body">
-                        <h2>Block Layout</h2>
-                        <hr />
-                        <div class="">
-                          <img src="vendor/img/block.jpg" class="img-responsive img-centered" alt="">
-                        </div>
-                        <p>Project is divided into block, each with specific number</p>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
@@ -71,12 +59,14 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
+                <div class="col-lg-6 col-lg-offset-1">
                     <div class="modal-body">
                         <h2>Sattelite View</h2>
                         <hr />
-                        <div class="zoom">
-                          <img src="vendor/img/satallite.jpg" class="img-responsive img-centered" alt="">
+                        <div class="easyzoom easyzoom--adjacent">
+                          <a href="vendor/img/satallite.jpg">
+                            <img src="vendor/img/satallite.jpg" class="img-responsive img-centered" alt="">
+                          </a>
                         </div>
                     </div>
                 </div>

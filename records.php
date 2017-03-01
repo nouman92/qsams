@@ -19,7 +19,7 @@ $clause = '';
 $glue = '';
 $cond_values = array();
 
-if (isset($_POST['apply_filter']))
+if (isset($_POST['apply_filter']) || isset($_POST['get_csv']) )
 {
   $block_filter = $_POST['block_number'];
   $row_filter = $_POST['row_number'];
@@ -116,7 +116,7 @@ if (isset($_POST['apply_filter'])){
           </div>
           <hr/>
           <div class="records-filter">
-            <form class="form-inline" action="/qsams/records.php" method="post">
+            <form class="form-inline" action="/records.php" method="post">
               <div class="text-center">
                 <select class="form-control" name="block_number">
                   <option value="0">Select Block</option>
@@ -165,7 +165,7 @@ if (isset($_POST['apply_filter'])){
                 <select class="form-control"  name="limit">
                   <option value="10">Limit Records</option>
                   <?php
-                    for( $i = 10 ; $i <= 50 ;    $i = $i + 10 ){
+                    for( $i = 50 ; $i <= 300 ;    $i = $i + 50 ){
                       echo "<option value='".$i."' ";
                       if($limit_filter == $i )
                         echo " selected='selected' ";
@@ -187,21 +187,29 @@ if (isset($_POST['apply_filter'])){
                 <input class="form-control"  name="seriel_no" placeholder="Seriel no" type="text"/>
                 <button class="btn btn-success" type="submit" name="apply_filter" >Show Results</button>
                 <button class="btn btn-success" type="submit" name="get_csv" >Write CSV</button>
-
               </div>
               <br/>
               <div class="text-center">
                 <?php
                 if (isset($_POST['get_csv'])){
-                  $data_to_write = Assetsgrid::find('all',array('conditions'=> array_merge(array(1 => $clause), $cond_values) ,"limit"=>500));
+                  $data_to_write = Assetsgrid::find('all',array('conditions'=> array_merge(array(1 => $clause), $cond_values) ,"limit"=>1000));
                   $index = 0;
                   $fp = fopen('output.csv', 'w');
-                  fputcsv($fp, array('Block', 'Row', 'Table', 'Panel', 'Seriel'));
+                  fputcsv($fp, array('Block', 'Row', 'Table', 'Panel', 'Seriel',
+                                     'V oc','I sc','V mppt','I mppt','Maxpower','Fillfactor'));
                   foreach ($data_to_write as $grid){
-                    $index++;
-                    fputcsv($fp,[$grid->block_number,$grid->row_number,$grid->table_number,$grid->panel_number,get_active_seriel_number($grid->asset)]);
-                    if($index == 500)
-                      break;
+                  
+                    $active_asset = get_active_seriel_number_data($grid->asset);
+                    if($active_asset){
+                      fputcsv($fp,[$grid->block_number,$grid->row_number,$grid->table_number,$grid->panel_number,
+                               $active_asset->seriel_no,$active_asset->v_oc,$active_asset->i_sc,$active_asset->v_mppt,
+                               $active_asset->i_mppt,$active_asset->max_power,$active_asset->fill_factor]);
+                    }else{
+                      fputcsv($fp,[$grid->block_number,$grid->row_number,$grid->table_number,$grid->panel_number,
+                               "n/a","n/a","n/a","n/a","n/a","n/a","n/a"]);
+
+                    }
+
                   }
                   echo "<a href='./output.csv' target='_blank'>Download Here</a>";
                   header("Refresh: 10;url=records.php");
@@ -236,9 +244,9 @@ if (isset($_POST['apply_filter'])){
                   "<td>".$grid->table_number . " </td>".
                   "<td>".$grid->panel_number. " </td>".
                   "<td>".get_active_seriel_number($grid->asset)."</td>".
-                  "<td><a href='/qsams/detail.php?record_id=".$grid->id."' class='blue-text'><i class='fa fa-user'>View</i></a></td>";
+                  "<td><a href='/detail.php?record_id=".$grid->id."' class='blue-text'><i class='fa fa-user'>View</i></a></td>";
                   if($_SESSION['role'] == "Admin"){
-                    echo "<td><a href='/qsams/edit.php?record_id=".$grid->id."' class='teal-text'><i class='fa fa-pencil'>Edit</i></a></td>";
+                    echo "<td><a href='/edit.php?record_id=".$grid->id."' class='teal-text'><i class='fa fa-pencil'>Edit</i></a></td>";
                   }
                  echo "</tr> ";
               }
@@ -254,6 +262,18 @@ if (isset($_POST['apply_filter'])){
                     }
                   }
                   return $seriel_no;
+              }
+              function get_active_seriel_number_data($assets) {
+
+                  if(sizeof($assets) > 0){
+                    foreach ($assets as $asset){
+                      if($asset->active == 1)
+                      {
+                        return $asset;
+                      }
+                    }
+                  }
+                  return null;
               }
             ?>
             </tbody>

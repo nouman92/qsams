@@ -65,21 +65,27 @@ if (isset($_SESSION['email']))
                           {
                             try{
                                 $users = Users::all(array('conditions' => array('email = ? AND password = ?', $_REQUEST['email'], $_REQUEST['password']),'limit' => 1));
+                                if(sizeof($users) > 0)
+                                {
+                                   $_SESSION['email'] = $users[0]->email;
+                                   $_SESSION['name'] = $users[0]->name;
+                                   $_SESSION['role'] = $users[0]->role;
+                                   header("Location: records.php");
+                                }
+                                else
+                                {
+                                  echo '<div class="alert alert-danger alert-error ">
+                                   <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                   <strong>Error!</strong> Invalid email or password.</div>';
+                                }
                             }catch(Exception $ed){
-                                echo $ed;
-                            }
-                            if(sizeof($users) > 0)
-                            {
-                               $_SESSION['email'] = $users[0]->email;
-                               $_SESSION['name'] = $users[0]->name;
-                               $_SESSION['role'] = $users[0]->role;
-                               header("Location: records.php");
-                            }
-                            else
-                            {
-                              echo '<div class="alert alert-danger alert-error ">
-                               <a href="#" class="close" data-dismiss="alert">&times;</a>
-                               <strong>Error!</strong> Invalid email or password.</div>';
+                              echo '<div class="row"><div class="col-xs-12 col-sm-12 col-md-12" style="margin-top:20px">
+                              <div class="alert alert-danger alert-error ">
+                              <a href="#" class="close" data-dismiss="alert">&times;</a>
+                              <strong>Error!</strong> Error Occured Please Try Later.
+                              </div>
+                              </div>
+                              </div>';
                             }
                           }
                         }

@@ -16,7 +16,7 @@
                   </div>
                   <div class="row" style="padding-top:50px">
                     <div class="col-md-6">
-                      <a target="_blank" href="http://www.pv-lab.pk/"><img width="80%" width="100%" src="vendor/img/logo2.jpg"/></a>
+                      <a target="_blank" href="http://www.pv-lab.pk/"><img height="100px" width="100%" src="vendor/img/logo2.jpg"/></a>
                     </div>
                     <div class="col-md-6">
                       <a target="_blank"href="http://8p2.de/"><img width="80%" height="100px"src="vendor/img/logo.png"/></a>

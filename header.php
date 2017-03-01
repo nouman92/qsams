@@ -32,21 +32,21 @@ require './system/initialize.php';
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#toggle_menue">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="/qsams/" ><img width="200px" height="" src="./vendor/img/qs-solar-logo.jpg" alt="Assets Management" /></a>
+                <a class="navbar-brand" href="/" ><img width="200px" height="" src="./vendor/img/qs-solar-logo.jpg" alt="Assets Management" /></a>
                 <!-- <a class="navbar-brand" href="/bootstrap">Assets Management</a> -->
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="toggle_menue">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hidden">
-                        <a href="/qsams"></a>
+                        <a href="/"></a>
                     </li>
                     <?php if(!isset($_SESSION["email"])){?>
                       <li class="page-scroll">
                           <a href="about.php">About</a>
                       </li>
                       <li class="page-scroll">
-                          <a href="/qsams">Login</a>
+                          <a href="/">Login</a>
                       </li>
                     <?php } ?>
                     <?php if(isset($_SESSION["email"])){?>

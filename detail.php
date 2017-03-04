@@ -1,13 +1,11 @@
 <?php include 'header.php';
-if (!isset($_SESSION['email']))
-{
- header("Location: index.php");
- die();
+if (!isset($_SESSION['email'])) {
+    header("Location: index.php");
+    die();
 }
-if (!isset($_REQUEST['record_id']))
-{
-  header("Location: records.php");
-  die();
+if (!isset($_REQUEST['record_id'])) {
+    header("Location: records.php");
+    die();
 }
 $record_id = $_REQUEST['record_id'];
 $assetsGrid = Assetsgrid::find($record_id);
@@ -15,7 +13,9 @@ $assetsGrid = Assetsgrid::find($record_id);
 <section class="" id="">
     <div class="container">
       <div class="row">
-          <h2>Record Details <?php if($_SESSION['role'] == "Admin"){ ?> - <a class="btn" href="<?php echo "/edit.php?record_id=".$assetsGrid->id; ?>" > <h5>Edit Active</h5></a> <?php } ?></h2>
+          <h2>Record Details <?php if ($_SESSION['role'] == "Admin") {
+    ?> - <a class="btn" href="<?php echo "/edit.php?record_id=".$assetsGrid->id; ?>" > <h5>Edit Active</h5></a> <?php
+} ?></h2>
           <hr/>
           <div class="row">
             <div class="">
@@ -45,15 +45,16 @@ $assetsGrid = Assetsgrid::find($record_id);
           <hr/>
           <?php
             $active_asset;
-            foreach ($assetsGrid->asset as $asset){
-              if($asset->active == 1)
-                $active_asset = $asset;
+            foreach ($assetsGrid->asset as $asset) {
+                if ($asset->active == 1) {
+                    $active_asset = $asset;
+                }
             }
           ?>
           <div class="row">
-            <?php if($active_asset){
+            <?php if ($active_asset) {
               echo "<h4>Current</h4>";
-            }?>
+          }?>
             <div class="col-md-5">
             <table class="table table-bordered table-hover table-striped">
                 <tr>
@@ -118,82 +119,75 @@ $assetsGrid = Assetsgrid::find($record_id);
           <hr/>
           <div class="row">
             <?php
-              if(sizeof($assetsGrid->asset)>1 ){
-                echo "<h4>Previous</h4>";
+              if (sizeof($assetsGrid->asset)>1) {
+                  echo "<h4>Previous</h4>";
               }
-              foreach ($assetsGrid->asset as $asset){
-                if($asset->active == 0){
-            ?>
+              foreach ($assetsGrid->asset as $asset) {
+                  if ($asset->active == 0) {
+                      ?>
                   <div class="col-md-5">
               <table class="table table-bordered table-hover table-striped">
                   <tr>
                     <th class="text-left text-info">inactive - Replaced</th>
                     <td class="text-right">
                       <?php
-                      echo $asset->removed->format('Y-m-d');
-                      ?>
+                      echo $asset->removed->format('Y-m-d'); ?>
                     </td>
                   </tr>
                   <tr>
                     <th class="text-left text-info">Seriel #</th>
                     <td class="text-right">
                       <?php
-                      echo $asset->seriel_no;
-                      ?>
+                      echo $asset->seriel_no; ?>
                     </td>
                   </tr>
                   <tr>
                       <th class="text-left text-info">V oc</th>
                       <td class="text-right">
                         <?php
-                        echo $asset->v_oc;
-                        ?>
+                        echo $asset->v_oc; ?>
                        </td>
                   </tr>
                   <tr>
                       <th class="text-left text-info">I sc</th>
                       <td class="text-right">
                         <?php
-                        echo $asset->i_sc;
-                        ?>
+                        echo $asset->i_sc; ?>
                        </td>
                   </tr>
                   <tr>
                       <th class="text-left text-info">V mppt</th>
                       <td class="text-right">
                         <?php
-                        echo $asset->v_mppt;
-                        ?>
+                        echo $asset->v_mppt; ?>
                        </td>
                   </tr>
                   <tr>
                       <th class="text-left text-info">I mppt</th>
                       <td class="text-right">
                         <?php
-                        echo $asset->i_mppt;
-                        ?>
+                        echo $asset->i_mppt; ?>
                        </td>
                   </tr>
                   <tr>
                       <th class="text-left text-info">Max power</th>
                       <td class="text-right">
                         <?php
-                        echo $asset->max_power;
-                        ?>
+                        echo $asset->max_power; ?>
                        </td>
                   </tr>
                   <tr>
                       <th class="text-left text-info">Fill factor</th>
                       <td class="text-right">
                         <?php
-                        echo $asset->fill_factor;
-                        ?>
+                        echo $asset->fill_factor; ?>
                        </td>
                   </tr>
                 </table>
             </div>
             <?php
-                }
+
+                  }
               }
             ?>
           </div>

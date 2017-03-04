@@ -1,3 +1,33 @@
+<div class="container text-center" style="">
+  <div class="col-sm-1" style="height: 90px;">
+  </div>
+    <div class="col-sm-2 portfolio-item" style="height: 90px;">
+        <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+            <img src="vendor/img/main-layout.jpg" style="height:100%;width:100%" class="img-thumbnail" alt="">
+        </a>
+    </div>
+    <div class="col-sm-2 portfolio-item" style="height: 90px;">
+        <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
+            <img src="vendor/img/satallite.jpg" style="height:100%;width:100%" class="img-thumbnail" alt="">
+        </a>
+    </div>
+    <div class="col-sm-2 portfolio-item" style="height: 90px;">
+        <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
+            <img src="vendor/img/table.jpg" style="height:100%;width:100%" class="img-thumbnail" alt="">
+        </a>
+    </div>
+    <div class="col-sm-2 portfolio-item" style="height: 90px;">
+        <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
+            <img src="vendor/img/row.jpg" style="height:100%;width:100%" class="img-thumbnail" alt="">
+        </a>
+    </div>
+    <div class="col-sm-2 portfolio-item" style="height: 90px;">
+        <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
+            <img src="vendor/img/table-layout.jpg"  style="height:100%;width:100%" class="img-thumbnail" alt="">
+        </a>
+    </div>
+</div>
+
 <!-- Portfolio Modals -->
 <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content">

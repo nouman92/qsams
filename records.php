@@ -6,7 +6,11 @@ if (!isset($_SESSION['email']))
 }
 
 $current_page  = 1;
-$limit_filter = 10;
+$limit_filter = 100;
+
+$block_count = 100;
+$row_count = 13;
+$table_count = 8;
 
 $block_filter = 0;
 $row_filter = 0;
@@ -29,12 +33,11 @@ if (isset($_POST['apply_filter']) || isset($_POST['get_csv']) )
   $limit_filter = $_POST['limit'];
   $current_page = $_POST['current_page'];
 }
-
-
 if( $block_filter != 0){
   $clause .= $glue . ' block_number = ?';
   $cond_values[] = $block_filter;
   $glue = ' AND';
+  
 }
 
 if( $row_filter != 0){
@@ -79,145 +82,39 @@ if (isset($_POST['apply_filter'])){
   }
   $total_pages = ceil($total_records / $limit_filter);
 }
+function get_active_seriel_number($assets) {
+    $seriel_no = "not available";
+    if(sizeof($assets) > 0){
+      foreach ($assets as $asset){
+        if($asset->active == 1)
+        {
+          $seriel_no = $asset->seriel_no;
+          break;
+        }
+      }
+    }
+    return $seriel_no;
+}
+function get_active_seriel_number_data($assets) {
+
+    if(sizeof($assets) > 0){
+      foreach ($assets as $asset){
+        if($asset->active == 1)
+        {
+          return $asset;
+        }
+      }
+    }
+    return null;
+}
 ?>
 <section class="" id="">
   <br/>
     <div class="container">
         <div class="row">
-          <div class="container text-center" style="">
-            <div class="col-sm-1" style="height: 90px;">
-            </div>
-              <div class="col-sm-2 portfolio-item" style="height: 90px;">
-                  <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-                      <img src="vendor/img/main-layout.jpg" style="height:100%;width:100%" class="img-thumbnail" alt="">
-                  </a>
-              </div>
-              <div class="col-sm-2 portfolio-item" style="height: 90px;">
-                  <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
-                      <img src="vendor/img/satallite.jpg" style="height:100%;width:100%" class="img-thumbnail" alt="">
-                  </a>
-              </div>
-              <div class="col-sm-2 portfolio-item" style="height: 90px;">
-                  <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
-                      <img src="vendor/img/table.jpg" style="height:100%;width:100%" class="img-thumbnail" alt="">
-                  </a>
-              </div>
-              <div class="col-sm-2 portfolio-item" style="height: 90px;">
-                  <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
-                      <img src="vendor/img/row.jpg" style="height:100%;width:100%" class="img-thumbnail" alt="">
-                  </a>
-              </div>
-              <div class="col-sm-2 portfolio-item" style="height: 90px;">
-                  <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
-                      <img src="vendor/img/table-layout.jpg"  style="height:100%;width:100%" class="img-thumbnail" alt="">
-                  </a>
-              </div>
-              <?php include 'refrences.php';?>
-          </div>
+          <?php include 'refrences.php';?>
           <hr/>
-          <div class="records-filter">
-            <form class="form-inline" action="/records.php" method="post">
-              <div class="text-center">
-                <select class="form-control" name="block_number">
-                  <option value="0">Select Block</option>
-                  <?php
-                   for( $i = 1 ; $i <= 100 ; $i++){
-                      echo "<option value='".$i."' ";
-                      if($block_filter == $i )
-                        echo " selected='selected' ";
-                      echo" >".$i."</option>";
-                    }
-                  ?>
-                </select>
-                <select class="form-control" name="row_number">
-                  <option value="0">Select Row</option>
-                  <?php
-                   for( $i = 1 ; $i <= 13 ; $i++){
-                     echo "<option value='".$i."' ";
-                     if($row_filter == $i )
-                       echo " selected='selected' ";
-                     echo" >".$i."</option>";
-                    }
-                  ?>
-                </select>
-                <select class="form-control" name="table_number">
-                  <option value="0">Select Table</option>
-                  <?php
-                   for( $i = 1 ; $i <= 8 ; $i++){
-                     echo "<option value='".$i."' ";
-                     if($table_filter == $i )
-                       echo " selected='selected' ";
-                     echo" >".$i."</option>";
-                    }
-                  ?>
-                </select>
-                <select class="form-control" name="panel_number">
-                  <option value="0">Select Panel</option>
-                  <?php
-                   for( $i = 1 ; $i <= 40 ; $i++){
-                     echo "<option value='".$i."' ";
-                     if($panel_filter == $i )
-                       echo " selected='selected' ";
-                     echo" >".$i."</option>";
-                    }
-                  ?>
-                </select>
-                <select class="form-control"  name="limit">
-                  <option value="10">Limit Records</option>
-                  <?php
-                    for( $i = 50 ; $i <= 300 ;    $i = $i + 50 ){
-                      echo "<option value='".$i."' ";
-                      if($limit_filter == $i )
-                        echo " selected='selected' ";
-                      echo" >".$i."</option>";
-                     }
-                   ?>
-                </select>
-                <select class="form-control" name="current_page">
-                  <option value="1">Page Number</option>
-                  <?php
-                    for( $i = 1 ; $i <= $total_pages ;    $i++ ){
-                      echo "<option value='".$i."' ";
-                      if($current_page == $i )
-                        echo " selected='selected' ";
-                      echo" >".$i."</option>";
-                     }
-                   ?>
-                </select>
-                <input class="form-control"  name="seriel_no" placeholder="Seriel no" type="text"/>
-                <button class="btn btn-success" type="submit" name="apply_filter" >Show Results</button>
-                <button class="btn btn-success" type="submit" name="get_csv" >Write CSV</button>
-              </div>
-              <br/>
-              <div class="text-center">
-                <?php
-                if (isset($_POST['get_csv'])){
-                  $data_to_write = Assetsgrid::find('all',array('conditions'=> array_merge(array(1 => $clause), $cond_values) ,"limit"=>1000));
-                  $index = 0;
-                  $fp = fopen('output.csv', 'w');
-                  fputcsv($fp, array('Block', 'Row', 'Table', 'Panel', 'Seriel',
-                                     'V oc','I sc','V mppt','I mppt','Maxpower','Fillfactor'));
-                  foreach ($data_to_write as $grid){
-                  
-                    $active_asset = get_active_seriel_number_data($grid->asset);
-                    if($active_asset){
-                      fputcsv($fp,[$grid->block_number,$grid->row_number,$grid->table_number,$grid->panel_number,
-                               $active_asset->seriel_no,$active_asset->v_oc,$active_asset->i_sc,$active_asset->v_mppt,
-                               $active_asset->i_mppt,$active_asset->max_power,$active_asset->fill_factor]);
-                    }else{
-                      fputcsv($fp,[$grid->block_number,$grid->row_number,$grid->table_number,$grid->panel_number,
-                               "n/a","n/a","n/a","n/a","n/a","n/a","n/a"]);
-
-                    }
-
-                  }
-                  echo "<a href='./output.csv' target='_blank'>Download Here</a>";
-                  header("Refresh: 10;url=records.php");
-                }
-                ?>
-              </div>
-            </form>
-          </div>
+          <?php include 'filters.php';?>
           <hr/>
           <div class="container" style="">
             <table id="assetsGrid" class="table table-striped table-bordered table-hover  text-center">
@@ -249,31 +146,6 @@ if (isset($_POST['apply_filter'])){
                     echo "<td><a href='/edit.php?record_id=".$grid->id."' class='teal-text'><i class='fa fa-pencil'>Edit</i></a></td>";
                   }
                  echo "</tr> ";
-              }
-              function get_active_seriel_number($assets) {
-                  $seriel_no = "not available";
-                  if(sizeof($assets) > 0){
-                    foreach ($assets as $asset){
-                      if($asset->active == 1)
-                      {
-                        $seriel_no = $asset->seriel_no;
-                        break;
-                      }
-                    }
-                  }
-                  return $seriel_no;
-              }
-              function get_active_seriel_number_data($assets) {
-
-                  if(sizeof($assets) > 0){
-                    foreach ($assets as $asset){
-                      if($asset->active == 1)
-                      {
-                        return $asset;
-                      }
-                    }
-                  }
-                  return null;
               }
             ?>
             </tbody>

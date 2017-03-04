@@ -1,10 +1,10 @@
 <div class="records-filter">
   <form class="form-inline" method="post">
     <div class="text-center">
-      <select class="form-control" name="block_number" id="block_number" >
+      <select class="form-control" name="block_number" id="block_number" onchange="get_rows(this)" >
         <option value="0">Select Block</option>
         <?php
-         for( $i = 1 ; $i <= $block_count ; $i++){
+         for( $i = 1 ; $i <= 100 ; $i++){
             echo "<option value='".$i."' ";
             if($block_filter == $i )
               echo " selected='selected' ";
@@ -12,27 +12,27 @@
           }
         ?>
       </select>
-      <select class="form-control" name="row_number">
+      <select class="form-control" name="row_number" onchange="get_tables(this)"  id="row_number">
         <option value="0">Select Row</option>
-        <?php
+        <!-- <?php
          for( $i = 1 ; $i <= $row_count ; $i++){
            echo "<option value='".$i."' ";
            if($row_filter == $i )
              echo " selected='selected' ";
            echo" >".$i."</option>";
           }
-        ?>
+        ?> -->
       </select>
-      <select class="form-control" name="table_number">
+      <select class="form-control" name="table_number" id="table_number">
         <option value="0">Select Table</option>
-        <?php
+        <!-- <?php
          for( $i = 1 ; $i <= $table_count ; $i++){
            echo "<option value='".$i."' ";
            if($table_filter == $i )
              echo " selected='selected' ";
            echo" >".$i."</option>";
           }
-        ?>
+        ?> -->
       </select>
       <select class="form-control" name="panel_number">
         <option value="0">Select Panel</option>

@@ -78,7 +78,7 @@ if (isset($_SESSION['email']))
                                    <strong>Error!</strong> Invalid email or password.</div>';
                                 }
                             }catch(Exception $ed){
-                              echo $ed;
+                            //  echo $ed;
                               echo '<div class="row"><div class="col-xs-12 col-sm-12 col-md-12" style="margin-top:20px">
                               <div class="alert alert-danger alert-error ">
                               <a href="#" class="close" data-dismiss="alert">&times;</a>

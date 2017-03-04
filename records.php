@@ -8,10 +8,6 @@ if (!isset($_SESSION['email']))
 $current_page  = 1;
 $limit_filter = 100;
 
-$block_count = 100;
-$row_count = 13;
-$table_count = 8;
-
 $block_filter = 0;
 $row_filter = 0;
 $table_filter = 0;
@@ -37,7 +33,7 @@ if( $block_filter != 0){
   $clause .= $glue . ' block_number = ?';
   $cond_values[] = $block_filter;
   $glue = ' AND';
-  
+
 }
 
 if( $row_filter != 0){

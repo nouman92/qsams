@@ -9,6 +9,7 @@ if (!isset($_SESSION['email'])) {
 <section id="" style="height:90vh">
     <div class="container" style="margin-top:50px">
         <div class="row">
+            <?php if($_SESSION['role'] == "Admin"){?>
             <div class="col-lg-4">
               <?php
                 $users = Users::all();
@@ -41,6 +42,7 @@ if (!isset($_SESSION['email'])) {
                 ?>
             </div>
             <?php
+            }
             if (isset($_REQUEST["update_user"])) {
               $user_email = $_REQUEST["user_email"];
             }else{

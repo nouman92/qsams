@@ -11,7 +11,7 @@
       </div>
   </div>
   <form method="post">
-    <?php if($user->role == "Admin"){?>
+    <?php if($user->role == "Admin" || $_SESSION['role'] == "Standard"){?>
       <div class="row control-group">
           <div class="form-group col-xs-12 floating-label-form-group controls">
               <label>Current Password</label>
@@ -20,7 +20,7 @@
           </div>
       </div>
     <?php }?>
-    <input type="hidden" name="require_current_password" class="form-control" value="<?php if($user->role == "Admin") echo "1"; else echo "0";?>">
+    <input type="hidden" name="require_current_password" class="form-control" value="<?php if($user->role == "Admin" || $_SESSION['role'] == "Standard") echo "1"; else echo "0";?>">
     <input type="hidden" name="user_email" class="form-control" value="<?php echo $user->email; ?>">
     <div class="row control-group">
         <div class="form-group col-xs-12 floating-label-form-group controls">

@@ -571,3 +571,22 @@ input:focus ~ .highlight {
   padding-top: 20px;
   background-color: #eee;
 }
+
+.file-box{
+  border-style: solid;
+  border-width: medium;
+  padding: 10px;
+  margin : 20px;
+  height: 300px;
+}
+.file-box-description{
+  height: 70px;
+  overflow-y: scroll;
+}
+.file-box-footer{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  border-top: solid;
+}

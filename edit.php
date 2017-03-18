@@ -52,7 +52,7 @@ if(isset($_REQUEST['update_record']) && isset($_REQUEST['assets_id']) && isset($
           Activity::create(array(
             "user" => $_SESSION['email'] ,
             "date" => new DateTime(),
-            "activity"=> "Asset updated".$change,
+            "activity"=> "Asset updated, ".$change,
             "asset_id"=> $asset_to_update->id
           ));
         }
@@ -114,7 +114,7 @@ if(sizeof($assetsGrid->asset) > 0 && !isset($_REQUEST['new_record'])){
 <section class="" id="">
     <div class="container">
         <div class="row">
-          <h2>Edit Record - <a class="btn" href="<?php echo "/detail.php?record_id=".$assetsGrid->id; ?>" > <h5>View Detail</h5></a> </h2>
+          <h3>Edit Record - <a class="btn" href="<?php echo "/detail.php?record_id=".$assetsGrid->id; ?>" > <h5>View Detail</h5></a> </h3>
           <hr/>
           <form class="form" method="post">
             <div class="row">

@@ -1,11 +1,21 @@
-<?php include 'header.php'; if (!isset($_SESSION[ 'email'])) { header( "Location: index.php"); die(); } ?>
+<?php
+include 'header.php';
+if (!isset($_SESSION[ 'email']))
+{
+  header( "Location: index.php");
+  die();
+}
+?>
 <section>
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <h3 class="page-header">Build Drawings</h3>
             </div>
-            <?php $files=F ile::all(); foreach ($files as $file) { ?>
+            <?php
+            $files = File::all();
+            foreach ($files as $file) {
+            ?>
             <div style="" class="col-lg-3 col-md-4 col-xs-6 thumb text-center file-box">
                 <a target="_blank" href="<?php echo './'.$file->path; ?>"><img width="100px" src="vendor/img/icon.jpg" />
                     <p>
@@ -14,11 +24,15 @@
                 <hr/>
                 <p class="small file-box-description">
                     <?php echo $file->description; ?></p>
-                <p class="small file-box-footer">
-                    <a>Edit</a> &nbsp &nbsp <a>Delete</a>
-                </p>
+                <form method="post">
+                  <p class="small file-box-footer">
+                  <input type="hidden" name="file_id" value="<?php echo $file->id ?>" >
+                  <button type="submit" name="delete_file"onclick="return confirm('Are you sure?')">Delete</button>
+                  </p>
+                </form>
+
             </div>
-            <?php } if (sizeof($files)<=1 2) { ?>
+            <?php } if( sizeof($files) <= 12 ) { ?>
             <div style="height:200px;" class="col-lg-3 col-md-4 col-xs-6 thumb">
                 <form method="post" class="form form-inline" enctype="multipart/form-data">
                     <div class="row control-group">
@@ -41,31 +55,68 @@
                     </div>
                     <br>
                     <div id="success">
-                        <?php if (isset($_REQUEST[ "upload"])) { if ($_REQUEST[ "file_name"] !="" && $_REQUEST[ "description"] !="" && $_FILES[ 'file'][ 'name']) { try { move_uploaded_file($_FILES[ 'file'][ 'tmp_name'], 'uploads/'.$_FILES[ 'file'][ 'name']); File::create(array( "name"=>$_REQUEST["file_name"], "description"=>$_REQUEST["description"] , "path"=> 'uploads/'.$_FILES['file']['name'] )); echo '
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12" style="margin-top:20px">
-                                <div class="alert alert-success alert-success ">
-                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
-                                    <strong>Sucess!</strong>File uploaded sucessfully.
-                                </div>
-                            </div>
-                        </div>'; header("Refresh: 0.1;url=drawings.php"); } catch (Exception $ex) { error_log($ex); echo '
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12" style="margin-top:20px">
-                                <div class="alert alert-danger alert-error ">
-                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
-                                    <strong>Error!</strong> There was an error.
-                                </div>
-                            </div>
-                        </div>'; } } else { echo '
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12" style="margin-top:20px">
-                                <div class="alert alert-danger alert-error ">
-                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
-                                    <strong>Error!</strong> Please Enter all the fields.
-                                </div>
-                            </div>
-                        </div>'; } } ?>
+                        <?php
+                        if (isset($_REQUEST["upload"]))
+                        {
+                          if ($_REQUEST["file_name"] !="" && $_REQUEST["description"] !="" && $_FILES['file'][ 'name'])
+                          {
+                            try {
+                              move_uploaded_file($_FILES[ 'file'][ 'tmp_name'], 'uploads/'.$_FILES[ 'file'][ 'name']);
+                              File::create(array(
+                                "name"=>$_REQUEST["file_name"],
+                                "description"=>$_REQUEST["description"] ,
+                                "path"=> 'uploads/'.$_FILES['file']['name']
+                              ));
+                                echo
+                                '<div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12" style="margin-top:20px">
+                                        <div class="alert alert-success alert-success ">
+                                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                            <strong>Sucess!</strong>File uploaded sucessfully.
+                                        </div>
+                                    </div>
+                                </div>';
+                                header("Refresh: 0.1;url=drawings.php");
+                              } catch (Exception $ex)
+                              {
+                                error_log($ex);
+                                echo
+                                '<div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12" style="margin-top:20px">
+                                        <div class="alert alert-danger alert-error ">
+                                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                            <strong>Error!</strong> There was an error.
+                                        </div>
+                                    </div>
+                                </div>';
+                              }
+                            } else {
+                              echo
+                              '<div class="row">
+                                  <div class="col-xs-12 col-sm-12 col-md-12" style="margin-top:20px">
+                                      <div class="alert alert-danger alert-error ">
+                                          <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                          <strong>Error!</strong> Please Enter all the fields.
+                                      </div>
+                                  </div>
+                              </div>';
+                            }
+                          } else if (isset($_REQUEST["delete_file"]))
+                          {
+                            if ($_REQUEST["file_id"] != ""){
+                              $file = File::find($_REQUEST["file_id"]);
+                              if($file != null){
+                                unlink($file->path);
+                                $file->delete();
+                                echo "<script type='text/javascript'>alert('File Deleted');</script>";
+                                header("Refresh: 0.1;url=drawings.php");
+
+                              }else{
+                                echo "<script type='text/javascript'>alert('No File Found');</script>";
+                              }
+                            }
+                          }
+                          ?>
                     </div>
                     <div class="row">
                         <div class="form-group col-xs-12">

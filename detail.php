@@ -13,11 +13,11 @@ $assetsGrid = Assetsgrid::find($record_id);
 <section >
   <div class="container">
     <div class="row">
-      <h2>Record Details
+      <h3>Record Details
         <?php if ($_SESSION['role'] == "Admin") { ?> -
           <a class="btn" href="<?php echo "/edit.php?record_id=".$assetsGrid->id; ?>" > <h5>Edit Active</h5></a>
         <?php } ?>
-      </h2>
+      </h3>
       <hr/>
       <div class="row">
         <div class="">

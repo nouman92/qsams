@@ -12,10 +12,8 @@
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="vendor/js/easyzoom.js"></script>
+<script src="vendor/js/moment.min.js"></script>
+<script src="vendor/js/daterangepicker.js"></script>
 <script src="vendor/js/custom.js"></script>
-<script>
-var $easyzoom = $('.easyzoom').easyZoom();
-
-</script>
 </body>
 </html>

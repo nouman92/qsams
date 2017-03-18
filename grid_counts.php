@@ -17,6 +17,7 @@ if(isset($_REQUEST["block"])){
      }
 
   }else{
+    try{
     $assetsGrid = Assetsgrid::all(
       array("select"=>"max(row_number) as max_rows",
             "conditions"=>array("block_number = ?",$_REQUEST["block"]),
@@ -29,6 +30,9 @@ if(isset($_REQUEST["block"])){
         else
           echo "0";
       }
+    }catch(Exception $ex){
+      echo $ex;
+    }
   }
 }
 

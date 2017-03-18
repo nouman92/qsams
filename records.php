@@ -14,6 +14,7 @@ $table_filter = 0;
 $panel_filter = 0;
 
 $seriel_filter = "";
+$date_filter = "";
 
 $clause = '';
 $glue = '';
@@ -27,6 +28,7 @@ if (isset($_POST['apply_filter']) || isset($_POST['get_csv']) )
   $panel_filter = $_POST['panel_number'];
   $seriel_filter = $_POST['seriel_no'];
   $limit_filter = $_POST['limit'];
+  $date_filter = $_POST['daterange'];
   $current_page = $_POST['current_page'];
 }
 if( $block_filter != 0){
@@ -70,8 +72,24 @@ if (isset($_POST['apply_filter'])){
         'offset' => (($current_page-1) * $limit_filter)
       ));
      }catch(Exception $ex){
-      echo $ex;
+       error_log($ex);
     }
+  }else if( $date_filter != ""){
+    $range_dates = explode('-', $date_filter);
+    $start_date = strtotime($range_dates[0]);
+    $end_date   = strtotime($range_dates[1]);
+    $assetsGrid = Assetsgrid::All(array(
+      'conditions' => array("DATE(installed) BETWEEN ? and ? " , date('Y-m-d',$start_date) , date('Y-m-d',$end_date)),
+      "joins"=>array('asset'),
+      'limit' => $limit_filter,
+      'offset' => (($current_page-1) * $limit_filter)
+    ));
+    $total_records = Assetsgrid::count(array(
+      'conditions' => array("seriel_no like ? " , '%'.$seriel_filter.'%'),
+      "joins"=>array('asset'),
+      'limit' => $limit_filter,
+      'offset' => (($current_page-1) * $limit_filter)
+    ));
   }else{
     $assetsGrid = Assetsgrid::find('all',array('conditions'=> array_merge(array(1 => $clause), $cond_values) ,"limit"=>$limit_filter,'offset' => (($current_page-1) * $limit_filter)));
     $total_records = Assetsgrid::count(array('conditions'=> array_merge(array(1 => $clause), $cond_values)));

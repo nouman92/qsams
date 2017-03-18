@@ -16,6 +16,28 @@ if(isset($_REQUEST['update_record']) && isset($_REQUEST['assets_id']) && isset($
   try{
       $asset_id = $_REQUEST['assets_id'];
       $asset_to_update = Asset::find($asset_id);
+      $change = "";
+      if($asset_to_update->seriel_no != $_REQUEST['seriel_number']){
+        $change = "seriel:".$asset_to_update->seriel_no;
+      }
+      if($asset_to_update->v_oc != $_REQUEST['v_oc']){
+        $change = $change.", v_oc:".$asset_to_update->v_oc;
+      }
+      if($asset_to_update->i_sc != $_REQUEST['i_sc']){
+        $change = $change.", i_sc:".$asset_to_update->i_sc;
+      }
+      if($asset_to_update->v_mppt != $_REQUEST['v_mppt']){
+        $change = $change.", v_mppt:".$asset_to_update->v_mppt;
+      }
+      if($asset_to_update->i_mppt != $_REQUEST['i_mppt']){
+        $change = $change.", i_mppt:".$asset_to_update->i_mppt;
+      }
+      if($asset_to_update->fill_factor != $_REQUEST['fill_factor']){
+        $change = $change.", fill_factor:".$asset_to_update->fill_factor;
+      }
+      if($asset_to_update->max_power != $_REQUEST['max_power']){
+        $change = $change.", max_power:".$asset_to_update->max_power;
+      }
       $asset_to_update->update_attributes(array(
         "seriel_no" => $_REQUEST['seriel_number'],
         "v_oc"=>$_REQUEST['v_oc'],
@@ -23,11 +45,21 @@ if(isset($_REQUEST['update_record']) && isset($_REQUEST['assets_id']) && isset($
         "v_mppt"=>$_REQUEST['v_mppt'],
         "i_mppt"=>$_REQUEST['i_mppt'],
         "fill_factor"=>$_REQUEST['fill_factor'],
-        "max_power"=>$_REQUEST['max_power']));
+        "max_power"=>$_REQUEST['max_power'],
+        "remarks"=>$_REQUEST['remarks'],
+        "installed"=> new DateTime()));
+        if($change != ""){
+          Activity::create(array(
+            "user" => $_SESSION['email'] ,
+            "date" => new DateTime(),
+            "activity"=> "Asset updated".$change,
+            "asset_id"=> $asset_to_update->id
+          ));
+        }
       header("Location: detail.php?record_id=".$record_id);
       die();
   }catch(Exception $e){
-    echo $e;
+    error_log($e);
   }
 }
 else if(isset($_REQUEST['add_record']) && isset($_REQUEST['seriel_number'])){
@@ -41,7 +73,7 @@ else if(isset($_REQUEST['add_record']) && isset($_REQUEST['seriel_number'])){
         )
       );
     }
-    Asset::create(array(
+    $new_asset = Asset::create(array(
       "seriel_no" => $_REQUEST['seriel_number'],
       "v_oc"=>$_REQUEST['v_oc'],
       "i_sc"=>$_REQUEST['i_sc'],
@@ -49,14 +81,21 @@ else if(isset($_REQUEST['add_record']) && isset($_REQUEST['seriel_number'])){
       "i_mppt"=>$_REQUEST['i_mppt'],
       "fill_factor"=>$_REQUEST['fill_factor'],
       "max_power"=>$_REQUEST['max_power'],
+      "remarks"=>$_REQUEST['remarks'],
       "active" => 1,
       "installed"=> date('Y-m-d H:i:s'),
       "assets_grid_id"=>$assetsGrid->id)
     );
+    Activity::create(array(
+      "user" => $_SESSION['email'] ,
+      "date" => new DateTime(),
+      "activity"=> "Asset created",
+      "asset_id"=> $new_asset->id
+    ));
     header("Location: detail.php?record_id=".$record_id);
     die();
   }catch(Exception $ex){
-  //  echo $ex;
+    error_log($ex);
     echo "Error occured while processing your request";
   }
 }
@@ -75,7 +114,7 @@ if(sizeof($assetsGrid->asset) > 0 && !isset($_REQUEST['new_record'])){
 <section class="" id="">
     <div class="container">
         <div class="row">
-          <h2>Edit Record</h2>
+          <h2>Edit Record - <a class="btn" href="<?php echo "/detail.php?record_id=".$assetsGrid->id; ?>" > <h5>View Detail</h5></a> </h2>
           <hr/>
           <form class="form" method="post">
             <div class="row">
@@ -136,6 +175,10 @@ if(sizeof($assetsGrid->asset) > 0 && !isset($_REQUEST['new_record'])){
                 <div class="form-group">
                   <label class="" for="fill_factor">fill_factor:</label>
                   <input class="form-control" type="number"  step="any" value="<?php echo $asset->fill_factor; ?>" name="fill_factor" required>
+                </div>
+                <div class="form-group">
+                  <label class="" for="remarks">Remarks:</label>
+                  <input class="form-control" type="text"  value="<?php echo $asset->remarks; ?>" name="remarks" >
                 </div>
                 <br/>
                 <?php if($is_new)  { ?>

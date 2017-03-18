@@ -1,6 +1,8 @@
 <?php
-ini_set('display_errors', 0);
-error_reporting(0);
+//ini_set('display_errors', 0);
+//error_reporting(0);
+ini_set('error_log', 'logs/errors.log');
+
 ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/session'));
 @ob_start();
 //if(session_status()!=PHP_SESSION_ACTIVE)
@@ -19,6 +21,7 @@ require './system/initialize.php';
     <title>QASP-Assets Management</title>
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="vendor/css/styles.css" rel="stylesheet">
+    <link href="vendor/css/daterangepicker.css" rel="stylesheet">
     <link href="vendor/fonts/JuliusSansOne-Regular.ttf" rel="preconnect">
 
 
@@ -52,6 +55,9 @@ require './system/initialize.php';
                     <?php if(isset($_SESSION["email"])){?>
                       <li class="page-scroll">
                           <a href="records.php">Assets</a>
+                      </li>
+                      <li class="page-scroll">
+                          <a href="drawings.php">As built Drawings</a>
                       </li>
                       <li class="page-scroll">
                           <a href="profile.php">Profile</a>
